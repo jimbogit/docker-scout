@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y wget
 RUN wget -q -O - https://archive.scoutapp.com/scout-archive.key | apt-key add -
 RUN echo 'deb http://archive.scoutapp.com ubuntu main' | tee /etc/apt/sources.list.d/scout.list
-RUN apt-get install software-properties-common
+RUN apt-get install -y software-properties-common
 RUN apt-add-repository -y ppa:brightbox/ruby-ng
 RUN apt-get update
 
@@ -17,6 +17,7 @@ RUN apt-get install scoutd=0.5.18-1ubuntu1
 
 RUN gem install docker-api
 RUN gem install statsd-ruby
+RUN gem install sidekiq
 
 USER root
 COPY docker_events.rb start.sh /
